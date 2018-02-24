@@ -1,49 +1,51 @@
 # hapi-boilerplate
-Boilerplate Hapi utilisé pour les TP Node.JS des Licence pro
 
-# Lancement
+Forked from https://github.com/throrin19/hapi-boilerplate
+
+Made by Romain Chemartin
+
+Contains encrypt module from TP2 ([@romainch87/encrypt](https://www.npmjs.com/package/@romainch87/encrypt))
+
+# Requirements
+
+* [NodeJs and NPM](https://nodejs.org/en/)
+* Following Env Variables :
+```
+MONGO_HOST=localhost;
+MONGO_NAME=filRouge;
+```
+
+
+# Launch server
 
 ```
-nodejs server.js
+node server.js
 ```
-
-**Attention** : En fonction de la valeur de votre `NODE_ENV`, le serveur peut avoir une configuration différente.
-
-Ensuite, rendez vous sur :
+Then go to
 
 ```
-http://0.0.0.0:3000
+http://0.0.0.0:8080
 ```
 
-et vous devriez avoir :
+And you'll have the following result :
 
 ```json
 {"result":"vous êtes connectés"}
 ```
 
-# Structure du projet
+# Available routes
+
+Here is a list of the routes that were required for the project (Full list available on the console after the ``node server.js``command)
 
 ```
-Hapi-boilerplate
-├── app                         # Partie applicative de l'API (endpoints, handlers, plugins, ...)
-│   ├── endpoints               # Entrées des traitements par les requêtes http
-│   │   └── default.js          # Entrées de toutes les requêtes sur `/`. Utilisées pour vérifier l'état du service
-│   ├── handlers                # Traitement des différentes entrées
-│   ├── plugins                 # Plugins internes au projet
-│   └── handlers.js             # ficher permettant de charger tous les handlers
-├── config                      # Contient toute la partie Configuration du projet (plugins à charger, routes d'écoute, ...)
-│   ├── environments            # Dossier des différentes variables d'environnement pour les réglages système
-│   │   ├── all.js              # variables finales avec celles en commun + celles correspondant à l'environnement actuel
-│   │   ├── development.js      # variables pour le dev
-│   │   ├── local.js            # variables pour le local
-│   │   └── production.js       # variables pour la production
-│   ├── manifest                # répertoire contenant les confgurations pour les différentes parties du manifest
-│   │   ├── plugins.js          # chargement des plugins système et ceux internes au projet
-│   │   ├── routes.js           # chargement des différentes routes
-│   │   └── server.js           # configurations du serveur
-│   └── manifest.js             # compoosition du manifest final pour l'initialisation d'Hapi
-├── node_modules                # Dossier de toutes les librairies externes récupérées par NPM
-├── package.json
-├── readme.md
-└── server.js                   # fichier de lancement du projet
+POST             /login                         none                 Log in
+POST             /password/reset/{_id}          none                 Resets user password
+POST             /user                          none                 Create user
+GET              /user/{_id}                    none                 Get users
+PUT              /user/{_id}                    none                 Update user
+GET              /user/all                      none                 Get users
+DELETE           /user/delete/{_id}             none                 Deletes a specified user
+PUT              /users/generate                none                 Generate 100 users
 ```
+
+# Missing from the project
