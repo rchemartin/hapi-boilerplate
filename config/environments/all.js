@@ -15,6 +15,23 @@ const all           = {
             labels  : ['api'],
         },
     },
+    databases : {
+        hapi : {
+            adapter           : 'k7-mongoose',
+            connectionString  :
+                'mongodb://127.0.0.1/filRouge',
+            connectionOptions : {
+                server : {
+                    auto_reconnect : true,
+                    socketOptions  : { keepAlive : 1 },
+                },
+                replset : {
+                    auto_reconnect : true,
+                    socketOptions  : { keepAlive : 1 },
+                },
+            },
+        },
+    },
 };
 
 module.exports = _.merge(all, env);
