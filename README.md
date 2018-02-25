@@ -52,3 +52,6 @@ PUT              /users/generate                none                 Generate 10
 ```
 
 # Missing from the project
+
+Some test are missing, because of errors, or lack of time 
+(for example when we create random users, sometimes the informations given by faker doesn't correspond to the required format. I didn't manage to handle the error...)
