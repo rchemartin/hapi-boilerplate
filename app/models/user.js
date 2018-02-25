@@ -15,7 +15,6 @@ module.exports = jsonToMongoose({
             async.parallel({
                 password : (done) => {
                     doc.password = encrypt(doc.password);
-                    console.log(doc.password);
                     done();
                 },
             }, next);

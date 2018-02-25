@@ -19,7 +19,7 @@ const all           = {
         hapi : {
             adapter           : 'k7-mongoose',
             connectionString  :
-                'mongodb://127.0.0.1/filRouge',
+                `mongodb://${process.env.MONGO_HOST}/${process.env.MONGO_NAME}`,
             connectionOptions : {
                 server : {
                     auto_reconnect : true,
@@ -30,6 +30,12 @@ const all           = {
                     socketOptions  : { keepAlive : 1 },
                 },
             },
+        },
+    },
+    mail : {
+        auth : {
+            user : process.env.MAIL_USER,
+            password : process.env.MAIL_PASSWORD,
         },
     },
 };

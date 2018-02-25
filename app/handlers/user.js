@@ -1,10 +1,11 @@
 const faker = require('faker');
 const Promise = require('bluebird');
+const mail = require('./mail');
 
 module.exports.create = (request, reply) => {
     request.server.plugins.user.create(request.payload)
         .then((user) => {
-            console.log(user);
+            mail.emailCreate(request.server.app.envs.mail.auth, user);
             reply(user).code(201);
         })
         .catch(err => reply(err));
@@ -19,7 +20,6 @@ module.exports.getUsers = (request, reply) => {
 module.exports.getUser = (request, reply) => {
     request.server.plugins.user.getUser(request.params._id)
         .then((user) => {
-            console.log(user);
             reply(user).code(201);
         })
         .catch(err => reply(err));
@@ -27,7 +27,10 @@ module.exports.getUser = (request, reply) => {
 
 module.exports.updateUser = (request, reply) => {
     request.server.plugins.user.updateUser(request.params._id, request.payload)
-        .then(user => reply(user).code(201))
+        .then((user) => {
+            mail.emailEdit(request.server.app.envs.mail.auth, user);
+            reply(user).code(201);
+        })
         .catch(err => reply(err));
 };
 
@@ -59,6 +62,9 @@ module.exports.login = (request, reply) => {
 
 module.exports.resetPassword = (request, reply) => {
     request.server.plugins.user.resetPassword(request.params._id, request.payload.password)
-        .then(user => reply(user).code(201))
+        .then((user) => {
+            mail.emailReset(request.server.app.envs.mail.auth, user);
+            reply('Password modified !').code(201);
+        })
         .catch(err => reply(err));
 };

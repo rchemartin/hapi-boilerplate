@@ -69,7 +69,7 @@ const externals = {
                     return Promise.reject(Boom.notFound('User not found.'));
                 }
                 return internals.server.database.user.update({ _id : id }, { password })
-                    .then(status => 'Password modified !');
+                    .then(status => user);
             });
     },
     register(server, options, next) {

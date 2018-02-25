@@ -13,7 +13,10 @@ Contains encrypt module from TP2 ([@romainch87/encrypt](https://www.npmjs.com/pa
 ```
 MONGO_HOST=localhost;
 MONGO_NAME=filRouge;
+MAIL_USER=(email adress) 
+MAIL_PASSWORD=(mail password)
 ```
+I created a test email, that you can use : boilerplatenode@gmail.com / nodejs87
 
 
 # Launch server
